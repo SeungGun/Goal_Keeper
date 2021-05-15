@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goal_keeper/bottom_routes/achieve_page.dart';
 import 'package:goal_keeper/bottom_routes/goal_page.dart';
+import 'package:goal_keeper/bottom_routes/help_page.dart';
 import 'package:goal_keeper/bottom_routes/schedule_page.dart';
 import 'package:goal_keeper/bottom_routes/settings_page.dart';
 
@@ -32,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   double _opacity = 1.0;
-  List<Widget> bottomRoutes = [GoalPage(), SchedulePage(), AchievementPage(), SettingsPage()];
+  List<Widget> bottomRoutes = [GoalPage(), SchedulePage(), AchievementPage(), SettingsPage(), HelpMePage()];
   PageController _pageController;
   @override
   void initState() {
@@ -90,6 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
               label: '설정',
               icon: Icon(Icons.settings)
+          ),
+          BottomNavigationBarItem(
+              label: '도움말',
+              icon: Icon(Icons.assistant_navigation)
           ),
         ],
       ),

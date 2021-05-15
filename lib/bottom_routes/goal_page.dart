@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goal_keeper/initialSetting_page.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 class GoalPage extends StatefulWidget {
@@ -23,7 +24,8 @@ class _GoalPageState extends State<GoalPage> {
     _goalCount = Sqflite.firstIntValue(await database.rawQuery('SELECT COUNT(*) FROM goal_info'));
 
     if(_goalCount == 0){
-
+      Navigator.pushReplacement(this.context, MaterialPageRoute(builder: (context)
+      => InitialSettingPage()));
     }
   }
   @override
