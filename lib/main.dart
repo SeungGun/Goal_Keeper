@@ -33,70 +33,72 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   double _opacity = 1.0;
-  List<Widget> bottomRoutes = [GoalPage(), SchedulePage(), AchievementPage(), SettingsPage(), HelpMePage()];
+  List<Widget> bottomRoutes = [
+    GoalPage(),
+    SchedulePage(),
+    AchievementPage(),
+    SettingsPage(),
+    HelpMePage()
+  ];
   PageController _pageController;
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
   }
+
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: PageView(children: bottomRoutes,controller: _pageController,onPageChanged: (index){
-        setState(() {
-          _currentIndex = index;
-        });
-      },),
-      floatingActionButton: Opacity(
-        opacity: _opacity,
-        child: FloatingActionButton(
-          onPressed: (){
-
-          },
-          child: Icon(Icons.add),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        onTap: (index){
-          setState(() {
-            _currentIndex = index;
-            _opacity = (_currentIndex == 0) ? 1.0 : 0.0;
-            _pageController.animateToPage(_currentIndex, duration: Duration(milliseconds: 500), curve: Curves.easeOut);
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            label: '목표',
-            icon: Icon(Icons.assignment_turned_in)
+        body: PageView(
+          children: bottomRoutes,
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
+        floatingActionButton: Opacity(
+          opacity: _opacity,
+          child: FloatingActionButton(
+            onPressed: () {},
+            child: Icon(Icons.add),
           ),
-          BottomNavigationBarItem(
-              label: '스케줄',
-              icon: Icon(Icons.date_range_outlined)
-          ),
-          BottomNavigationBarItem(
-              label: '성취도',
-              icon: Icon(Icons.military_tech_outlined)
-          ),
-          BottomNavigationBarItem(
-              label: '설정',
-              icon: Icon(Icons.settings)
-          ),
-          BottomNavigationBarItem(
-              label: '도움말',
-              icon: Icon(Icons.assistant_navigation)
-          ),
-        ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+              _opacity = (_currentIndex == 0) ? 1.0 : 0.0;
+              _pageController.animateToPage(_currentIndex,
+                  duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                label: '목표', icon: Icon(Icons.assignment_turned_in)),
+            BottomNavigationBarItem(
+                label: '스케줄', icon: Icon(Icons.date_range_outlined)),
+            BottomNavigationBarItem(
+                label: '성취도', icon: Icon(Icons.military_tech_outlined)),
+            BottomNavigationBarItem(label: '설정', icon: Icon(Icons.settings)),
+            BottomNavigationBarItem(
+                label: '도움말', icon: Icon(Icons.assistant_navigation)),
+          ],
+        ),
       ),
     );
   }
